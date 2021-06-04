@@ -1,0 +1,49 @@
+{% extends 'layout-forms.html' %}
+{% load 'static %'}
+{% block content %}
+
+<section class="section">
+    <div class="container p-5">
+        <h2 class="font-weight-bold mt-3">ลบข้อมูล<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round" class="feather feather-trash-2">
+                <polyline points="3 6 5 6 21 6" />
+                <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2" />
+                <line x1="10" y1="11" x2="10" y2="17" />
+                <line x1="14" y1="11" x2="14" y2="17" />
+            </svg></h2>
+        <hr>
+
+
+        <form action="{% url 'workspaceDelete' upload.id  %}" method="POST">
+
+            {% csrf_token %}
+            <div class="card" style="width: 16rem;">
+                <img width="250" src="{{upload.image.url}}" alt="Placeholder image" class="card-img-top">
+              
+                <div class=" card-body">
+                <p>{{upload}}</p>
+                <p class="card-title">คุณต้องการลบไฟล์นี้ใช่หรือไม่?</p>
+                
+                <div class="row">
+                    <div class="col">
+                        <a class="btn btn-outline-secondary" href="{% url 'workspace' %}">ยกเลิก</a>
+                    </div>
+                    <div class="col">
+                        <input class="btn btn-danger" type="submit" name="Confirm" value="ลบไฟล์">
+                    </div>
+                </div>
+            </div>
+
+    </div>
+
+
+
+
+
+    </form>
+
+    </div>
+
+</section>
+{% endblock %}

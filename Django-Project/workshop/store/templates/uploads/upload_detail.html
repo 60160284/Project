@@ -1,0 +1,162 @@
+{% extends 'layout.html' %}
+{% load 'static %'}
+{% block content%}
+<section class="hero ">
+  <div class="hero-body" style="background-color: white;">
+
+
+    <div class="columns">
+      <div class="column is-8 is-offset-2 ">
+        <figure class="image is-16by9">
+          <img src="{{uploads.image.url}}" alt="Placeholder image">
+        </figure>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section class="section bg">
+  <div class="columns">
+    <div class="column is-8 is-offset-2">
+      <div class="navbar-menu block">
+        <div class="navbar-start">
+          <h1 class="navbar-item">
+            <p class="title">{{uploads.name}}</p>
+          </h1>
+        </div>
+
+        <div class="navbar-end">
+          {% if uploads.price > 0 %}
+          {% if request.user.is_authenticated %}
+          <div class="navbar-item">
+            <div class="buttons">
+              <a class="button is-warning " href="{% url 'paymentOrder' %}">
+                <span class="icon">
+                  <i class="fa fa-download item-down"></i>
+                </span>
+                <strong>ดาวน์โหลด</strong>
+              </a>
+
+            </div>
+          </div>
+          {% else %}
+          <div class="navbar-item">
+            <div class="buttons">
+              <a class="button is-warning " href="{% url 'signIn' %}">
+                <span class="icon">
+                  <i class="fa fa-download item-down"></i>
+                </span>
+                <strong>ดาวน์โหลด</strong>
+              </a>
+
+            </div>
+          </div>
+          {% endif %}
+          {% else %}
+          <div class="navbar-item" ">
+            <div class=" buttons">
+            <a class="button is-outlined is-link" href="{{uploads.inputfile.url}}">
+              <span class="icon">
+                <i class="fa fa-download item-down"></i>
+              </span>
+              <strong>ดาวน์โหลด</strong>
+            </a>
+
+          </div>
+        </div>
+        {% endif %}
+      </div>
+    </div>
+
+   
+    <div class="media-content">
+      <div class="content is-medium item-sdy" style="padding: 2rem 0rem 2rem 0rem;">
+        <p>{{uploads.description}} </p>
+
+
+      </div>
+    </div>
+    <div class="columns">
+      {% if uploads.price > 0 %}
+        
+
+      <div class="column">
+        <span class="box" >
+          {{uploads.created}}</span>
+      </div>
+
+      <div class="column">
+        <span class="box" >
+          {{uploads.category.name}}</span>
+      </div>
+
+      <div class="column"> <span class="box" >
+          {{uploads.typefile.name}}</span>
+      </div>
+
+      <div class="column">
+        <span class="box" >
+          {{uploads.published.name}}</span>
+      </div>
+      <div class="column">
+        <span class="box" >
+          {{uploads.price}}<p>บาท</p>
+        </span>
+      </div>
+    </div>
+      {% else %}
+    <div class="column">
+      <span class="box" >
+        {{uploads.created}}</span>
+    </div>
+
+    <div class="column">
+      <span class="box" >
+        {{uploads.category.name}}</span>
+    </div>
+
+    <div class="column">
+      <span class="box" >
+        {{uploads.typefile.name}}
+      </span>
+    </div>
+
+    <div class="column">
+      <span class="box" >
+        {{uploads.published.name}}
+      </span>
+    </div>
+
+  </div>
+  {%endif%}
+
+{% endblock %}
+
+ <!-- <article class="media block">
+        <div class="media-left">
+          {% if uploads.user.profile.profile_image.url %}
+          <figure class="image is-64x64" >
+            <img src="{{uploads.user.profile.profile_image.url}}" class="is-rounded" alt="Profile image" style="border: 3px solid;" >
+          </figure>
+          {% else %}
+          <figure class="image is-64x64" >
+ 
+            <img src="" alt="Profile image" style="border: 3px solid;" >
+      
+                      
+          </figure>
+          {% endif %}
+        </div>
+
+
+        <div class="media-content">
+          <div class="content">
+            <p class="subtitle">
+              
+              <br>
+              {{ uploads.user.username }}
+            </p>
+          </div>
+        </div>
+      </article>  -->

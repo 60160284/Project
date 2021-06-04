@@ -1,0 +1,95 @@
+<div class="column has-text-centered" style="background-color: white;">
+    <button class="button home-filter" onclick="filter()">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class=""
+            viewBox="0 -5 16 16">
+            <path
+                d="M6 10.5a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 0 1h-3a.5.5 0 0 1-.5-.5zm-2-3a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5zm-2-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5z" />
+        </svg>
+        <span>ตัวกรอง</span>
+    </button>
+
+    <div class="select">
+        <select>
+            <option value="" selected>ผลงานทั้งหมด</option>
+            <option value="">ตามวันที่เผยแพร่</option>
+        </select>
+    </div>
+
+
+</div>
+
+
+
+
+
+
+
+<div id="myDIV" style="display: none; background-color: white;">
+
+    {% csrf_token %}
+    <div class="columns section">
+        <div class="column">
+            <span>การเปิดเผย</span>
+            {% for published in plinks %}
+            <div class="column ">
+
+                <input type="checkbox" value="{{published.get_url}}" />
+                <label>{{published.name}}</label>
+            </div>
+            {% endfor %}
+        </div>
+
+
+        <div class="column" id="cat">
+            <span>หมวดหมู่</span>
+
+            {% for category in links %}
+            <div class="column ">
+                <input type="checkbox" class="prodCheck" onclick="checkFilter()" value="{{category.name}}" />
+                <label>{{category.name}}</label>
+            </div>
+            {% endfor %}
+
+
+        </div>
+
+
+
+        <div class="column">
+            <span>วันที่เผยแพร่</span>
+            <div class="column checkbox">
+                <input type="checkbox" name="" data-filter="" data-filter-value="" />
+                <label>วันนี้</label>
+            </div>
+            <div class="column checkbox">
+                <input type="checkbox" name="" data-filter="" data-filter-value="" />
+                <label>สัปดาห์นี้</label>
+            </div>
+            <div class="column checkbox">
+                <input type="checkbox" name="" data-filter="" data-filter-value="" />
+                <label>เดือนนี้</label>
+            </div>
+            <div class="column checkbox">
+                <input type="checkbox" name="" data-filter="" data-filter-value="" />
+                <label>ปีนี้</label>
+            </div>
+
+        </div>
+
+
+        <div class="column">
+            <span>ประเภทของโมเดล</span>
+            {% for typefile in tlinks %}
+
+            <div class="column checkbox">
+                <input type="checkbox" name="" value="{{typefile.get_url}}" />
+                <label>{{typefile.name}}</label>
+            </div>
+            {% endfor %}
+
+        </div>
+        <div id='filteredProducts' class='row' style="margin: 100px 0;"></div>
+    </div>
+    <!-- <button class="button is-primary" type="submit" id="submit-button">ค้นหา</button> -->
+</div>
+
